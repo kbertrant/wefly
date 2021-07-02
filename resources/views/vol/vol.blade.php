@@ -25,11 +25,11 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 centered">
                         <label>Heure départ*</label>
-                        <input  id="" type="text" class="form-control" name="heureDepart" required>
+                        <input  id="" type="text" class="form-control timepicker" name="heureDepart" required>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 centered">
                         <label>Heure Arrivée*</label>
-                        <input  id="" type="text" class="form-control" name="heureArrivee" required>
+                        <input  id="" type="text" class="form-control timepicker" name="heureArrivee" required>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 centered">
                         <label>Aeroport départ*</label>
