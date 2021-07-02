@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Vol extends Model
 {
     use HasFactory;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'numeroVol', 'jourDepart', 'jourArrivee','heureDepart','heureArrivee','idAirportDepart','idCompagnie','idAirportArrivee','nbrePassagers'
+    ];
 }

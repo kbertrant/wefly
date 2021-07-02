@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Compagnie extends Model
 {
     use HasFactory;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'comName', 'comLogo'
+    ];
 }

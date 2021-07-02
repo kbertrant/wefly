@@ -4,9 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Compagnie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
+use Datatables;
 
 class CompagnieController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +28,7 @@ class CompagnieController extends Controller
      */
     public function index()
     {
-        //
+        return datatables()->of(Compagnie::query())->toJson();
     }
 
     /**
@@ -24,7 +38,7 @@ class CompagnieController extends Controller
      */
     public function create()
     {
-        //
+        return view('comp.compagnie');
     }
 
     /**
@@ -35,7 +49,27 @@ class CompagnieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'comName' => ['required'],
+            'comLogo' => ['required'],
+            
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/compagnie')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        
+        $comp = new Compagnie();
+        //dd($request);
+        $comp->comName = $request->comName;
+        $comp->comLogo = $request->comLogo;
+        $comp->save();
+        
+        
+        
+        return redirect()->back()->with('success', 'Nouvelle compagnie ajoutée avec succes !!');
     }
 
     /**

@@ -22,6 +22,7 @@ class CreateVolsTable extends Migration
             $table->string('heureArrivee');
             $table->integer('idAirportDepart');
             $table->integer('idAirportArrivee');
+            $table->integer('idCompagnie');
             $table->string('nbrePassagers');
             $table->timestamps();
         });

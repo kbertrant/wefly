@@ -4,9 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Aeroport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
+use Datatables;
 
 class AeroportController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +28,7 @@ class AeroportController extends Controller
      */
     public function index()
     {
-        //
+        return datatables()->of(Aeroport::query())->toJson();
     }
 
     /**
@@ -24,7 +38,7 @@ class AeroportController extends Controller
      */
     public function create()
     {
-        //
+        return view('airport.airport');
     }
 
     /**
@@ -35,7 +49,27 @@ class AeroportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'aeroportName' => ['required'],
+            'ville' => ['required'],
+            
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/airport')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        
+        $airport = new Aeroport();
+        //dd($request);
+        $airport->aeroportName = $request->aeroportName;
+        $airport->ville = $request->ville;
+        $airport->save();
+        
+        
+        
+        return redirect()->back()->with('success', 'Nouveau Aeroport ajouté avec succes !!');
     }
 
     /**

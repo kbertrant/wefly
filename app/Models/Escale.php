@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Escale extends Model
 {
     use HasFactory;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'heureDepart', 'heureArrivee', 'idVol'
+    ];
 }
