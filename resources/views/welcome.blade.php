@@ -10,7 +10,7 @@
     <div class="carousel-inner" role="listbox">
 
       <!-- Slide 1 -->
-      <div class="carousel-item active" style="background-image: url(img/image_vehistoric.jpg);">
+      <div class="carousel-item active" style="background-image: url(img/Achat_billets.jpg);">
         <div class="carousel-container">
           
           <div class="carousel-content animate__animated animate__fadeInUp">
@@ -47,21 +47,3 @@
 
 </main>
 @endsection
-<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript">
-  var images = ["image_vehistoric.jpg", "image_vehistoric2.jpg", "image_vehistoric3.jpg"];
-  $(function () {
-      var i = 0;
-      $("#heroCarousel").css("background-image", "url(img/" + images[i] + ")");
-      setInterval(function () {
-          i++;
-          if (i == images.length) {
-              i = 0;
-          }
-          $("#heroCarousel").fadeOut( function () {
-              $(this).css("background-image", "url(img/" + images[i] + ")");
-              $(this).fadeIn();
-          });
-      }, 7000);
-  });
-</script>
